@@ -1,6 +1,13 @@
-//Business Logic
-
+//Business Logic///
 //Set Global Variables
+var Dice = {
+  1:"img/dice_one.jpg",
+  2:"img/dice_two.jpg",
+  3:"img/dice_three.jpg",
+  4:"img/dice_four.jpg",
+  5:"img/dice_five.jpg",
+  6:"img/dice_six.jpg"
+}
 var runningTotal = 0;
 var playerOne = 0;
 var playerTwo = 0;
@@ -11,7 +18,11 @@ var currentRoll;
 var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
-
+var showDice = function(currentNumber) {
+  if (currentNumber == 1) {
+    $("#dice-roll").append("<img src=" + Dice.1 + ">")
+  }
+}
 var checkIfOne = function(currentNumber){
   if (currentNumber === 1) {
     runningTotal = 0;
@@ -39,9 +50,11 @@ $(document).ready(function() {
   //Roll Button Functionality
   $("#roll-button").click(function() {
       currentRoll = getRandomInt(1,7);
+      showDice(currentRoll);
       $("#dice-number").text(currentRoll);
       checkIfOne(currentRoll);
       $("#running-total").text(runningTotal);
+
   });
 
   //Hold Button Functionality
