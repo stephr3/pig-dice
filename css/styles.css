@@ -3,10 +3,24 @@
   color: white;
 }
 
+button {
+  display:inline-block;
+}
 .dice-images {
-  max-width: 100px;
+  max-width: 400px;
+  display: block;
+  margin: 2% auto;
+  padding: 20px;
+}
+.jumbotron {
+  text-align: center;
 }
 
 #dice-roll {
-  min-height: 100px;
+  min-height: 500px;
+  margin-bottom: 50px;
+}
+
+#player-one-score, #player-two-score {
+  min-height: 200px;
 }

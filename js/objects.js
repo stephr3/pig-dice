@@ -48,7 +48,7 @@ var Dice = {
 Player.prototype.checkIfOne = function () {
   if (this.currentRoll === 1) {
     this.runningTotal = 0;
-    this.turn = !this.turn;
+    this.switch();
   } else {
     this.runningTotal += this.currentRoll;
   }
@@ -57,6 +57,21 @@ Player.prototype.checkIfOne = function () {
 Player.prototype.hold = function () {
   this.totalScore += this.runningTotal;
   this.runningTotal = 0;
+  this.switch();
+};
+
+Player.prototype.switch = function () {
+  if (this === playerOne) {
+    playerOne.turn = false;
+    playerTwo.turn = true;
+    $("#player-two-score").addClass("highlight");
+    $("#player-one-score").removeClass("highlight");
+  } else if (this === playerTwo) {
+    playerTwo.turn = false;
+    playerOne.turn = true;
+    $("#player-one-score").addClass("highlight");
+    $("#player-two-score").removeClass("highlight");
+}
 };
 
 //User Interface Logic
@@ -68,9 +83,6 @@ $(document).ready(function() {
       playerOne.currentRoll = getRandomInt(1,7);
       showDice(playerOne.currentRoll);
       playerOne.checkIfOne();
-      console.log("Player one: " + playerOne.turn);
-      playerTwo.turn = true;
-      console.log("Player two: " + playerTwo.turn);
       $("#running-total").text(playerOne.runningTotal);
       $("#player-one-total").text(playerOne.totalScore);
     //Player Two's Turn
@@ -78,9 +90,6 @@ $(document).ready(function() {
       playerTwo.currentRoll = getRandomInt(1,7);
       showDice(playerTwo.currentRoll);
       playerTwo.checkIfOne();
-      console.log("Player two: " + playerTwo.turn);
-      playerOne.turn = true;
-      console.log("Player one: " + playerOne.turn);
       $("#running-total").text(playerTwo.runningTotal);
       $("#player-two-total").text(playerTwo.totalScore);
     }
