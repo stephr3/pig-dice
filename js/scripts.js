@@ -86,6 +86,7 @@ $(document).ready(function() {
       showDice(currentRoll);
       checkIfOne(currentRoll);
       $("#running-total").text(runningTotal);
+
   });
 
   //Hold Button Functionality
