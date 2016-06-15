@@ -8,6 +8,7 @@ var Dice = {
   five:"img/dice_five.jpg",
   six:"img/dice_six.jpg"
 }
+
 var runningTotal = 0;
 var playerOne = 0;
 var playerTwo = 0;
@@ -17,25 +18,6 @@ var currentRoll;
 //Set Functions
 var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
-};
-
-var declareWinner = function(playerOneScore, playerTwoScore) {
-  if (playerOne >= 40) {
-    alert("Winner PLAYER ONE");
-    runningTotal = 0;
-    playerOne = 0;
-    playerTwo = 0;
-    $("#player-one-total").text(playerOne);
-    $("#player-two-total").text(playerTwo);
-
-  } else if (playerTwo >= 40) {
-    alert("Winner PLAYER TWO!")
-    runningTotal = 0;
-    playerOne = 0;
-    playerTwo = 0;
-    $("#player-one-total").text(playerOne);
-    $("#player-two-total").text(playerTwo);
-  }
 };
 
 var showDice = function(currentNumber) {
@@ -53,7 +35,7 @@ var showDice = function(currentNumber) {
   } else if (currentNumber === 6) {
     $("#dice-roll").append("<img class='dice-images' src=" + Dice.six + ">")
   }
-}
+};
 
 var checkIfOne = function(currentNumber){
   if (currentNumber === 1) {
@@ -77,16 +59,33 @@ var checkIfOne = function(currentNumber){
   }
 };
 
+var declareWinner = function(playerOneScore, playerTwoScore) {
+  if (playerOne >= 100) {
+    alert("Winner PLAYER ONE");
+    endGame();
+
+  } else if (playerTwo >= 100) {
+    alert("Winner PLAYER TWO!")
+    endGame();
+  }
+};
+
+var endGame = function () {
+  runningTotal = 0;
+  playerOne = 0;
+  playerTwo = 0;
+  $("#player-one-total").text(playerOne);
+  $("#player-two-total").text(playerTwo);
+};
+
 //User Interface Logic
 $(document).ready(function() {
   //Roll Button Functionality
   $("#roll-button").click(function() {
       currentRoll = getRandomInt(1,7);
       showDice(currentRoll);
-      // $("#dice-number").text(currentRoll);
       checkIfOne(currentRoll);
       $("#running-total").text(runningTotal);
-
   });
 
   //Hold Button Functionality
