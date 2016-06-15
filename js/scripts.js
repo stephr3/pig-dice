@@ -5,6 +5,7 @@ var runningTotal = 0;
 var playerOne = 0;
 var playerTwo = 0;
 var playerOneTurn = true;
+var currentRoll;
 
 //Set Functions
 var getRandomInt = function(min, max) {
@@ -15,7 +16,7 @@ var checkIfOne = function(currentNumber){
   if (currentNumber === 1) {
     runningTotal = 0;
     $("#running-total").text(runningTotal);
-    debugger;
+
     if(playerOneTurn){
       $("#player-one-total").text(playerOne);
       $("#player-two-score").addClass("highlight");
@@ -27,12 +28,9 @@ var checkIfOne = function(currentNumber){
       $("#player-two-score").removeClass("highlight");
       playerOneTurn = true;
     }
+  } else {
+    runningTotal += currentRoll;
 
-    // if (playerOneTurn) {
-    //   !playerOneTurn;
-    // } else if (!playerOneTurn) {
-    //   playerOneTurn;
-    // }
   }
 };
 
@@ -40,10 +38,9 @@ var checkIfOne = function(currentNumber){
 $(document).ready(function() {
   //Roll Button Functionality
   $("#roll-button").click(function() {
-      var currentRoll = getRandomInt(1,7);
+      currentRoll = getRandomInt(1,7);
       $("#dice-number").text(currentRoll);
       checkIfOne(currentRoll);
-      runningTotal += currentRoll;
       $("#running-total").text(runningTotal);
   });
 
@@ -52,15 +49,15 @@ $(document).ready(function() {
     if(playerOneTurn){
       playerOne += runningTotal;
       $("#player-one-total").text(playerOne);
-      !playerOneTurn
       $("#player-two-score").addClass("highlight");
       $("#player-one-score").removeClass("highlight");
+      playerOneTurn = false;
     } else {
       playerTwo += runningTotal;
       $("#player-two-total").text(playerTwo);
-      playerOneTurn;
       $("#player-one-score").addClass("highlight");
       $("#player-two-score").removeClass("highlight");
+      playerOneTurn = true
     }
     runningTotal = 0;
     $("#running-total").text(runningTotal);
