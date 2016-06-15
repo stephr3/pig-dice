@@ -48,28 +48,53 @@ var Dice = {
 Player.prototype.checkIfOne = function () {
   if (this.currentRoll === 1) {
     this.runningTotal = 0;
-    this.turn = false;
+    this.turn = !this.turn;
   } else {
     this.runningTotal += this.currentRoll;
   }
+};
+
+Player.prototype.hold = function () {
+  this.totalScore += this.runningTotal;
+  this.runningTotal = 0;
 };
 
 //User Interface Logic
 $(document).ready(function() {
   //Roll Button Functionality
   $("#roll-button").click(function() {
-    playerOne.currentRoll = getRandomInt(1,7);
-    showDice(playerOne.currentRoll);
-    playerOne.checkIfOne();
-    $("#running-total").text(playerOne.runningTotal);
-
+    //Player One's Turn
+    if (playerOne.turn) {
+      playerOne.currentRoll = getRandomInt(1,7);
+      showDice(playerOne.currentRoll);
+      playerOne.checkIfOne();
+      console.log("Player one: " + playerOne.turn);
+      playerTwo.turn = true;
+      console.log("Player two: " + playerTwo.turn);
+      $("#running-total").text(playerOne.runningTotal);
+      $("#player-one-total").text(playerOne.totalScore);
+    //Player Two's Turn
+    } else if (playerTwo.turn){
+      playerTwo.currentRoll = getRandomInt(1,7);
+      showDice(playerTwo.currentRoll);
+      playerTwo.checkIfOne();
+      console.log("Player two: " + playerTwo.turn);
+      playerOne.turn = true;
+      console.log("Player one: " + playerOne.turn);
+      $("#running-total").text(playerTwo.runningTotal);
+      $("#player-two-total").text(playerTwo.totalScore);
+    }
   });
 
   //Hold Button Functionality
   $("#hold-button").click (function(){
-    playerOne.totalScore += playerOne.runningTotal;
-    $("#player-one-total").text(playerOne.totalScore);
-    playerOne.runningTotal = 0;
-    $("#running-total").text(playerTwo.runningTotal);
+    if (playerOne.turn) {
+      playerOne.hold();
+      $("#player-one-total").text(playerOne.totalScore);
+      $("#running-total").text(playerTwo.runningTotal);
+    } else if (playerTwo.turn)
+      playerTwo.hold();
+      $("#player-two-total").text(playerTwo.totalScore);
+      $("#running-total").text(playerOne.runningTotal);
   });
 });
