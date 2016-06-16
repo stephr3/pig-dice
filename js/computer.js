@@ -55,7 +55,7 @@ Player.prototype.checkIfOne = function () {
     }
   } else {
     this.runningTotal += this.currentRoll;
-    if (this.runningTotal >= 15 && (computer = true)) {
+    if (this.runningTotal >= 12 && (computer = true)) {
       totalRolls++;
     }
   }
@@ -74,7 +74,7 @@ Player.prototype.computerPlay = function () {
 } else if (playerOne.turn) {
   $("#hold-button").show();
   }
-  if (totalRolls < 2) {
+  if (totalRolls < 1) {
     playerTwo.checkIfOne();
   } else {
     playerTwo.hold();
@@ -101,7 +101,7 @@ Player.prototype.declareWinner = function() {
     $("#pig").addClass("pig-animate");
     $("#dice-left").addClass("dice-left-animate");
     $("#dice-right").addClass("dice-right-animate");
-    $(".title").text("Winner is " + this.playerName + "!");
+    $("#winner-title").append("<h1 class='title'>Winner is "  + this.playerName + "!</h1>");
     endGame(playerOne, playerTwo);
   }
 };

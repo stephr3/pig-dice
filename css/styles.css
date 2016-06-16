@@ -13,6 +13,15 @@ body {
   min-height: 300px;
 }
 
+/*#winner, #pig, #dice-left, #dice-right {
+  display: none;
+}*/
+
+#winner {
+  display: none;
+}
+
+
 #winner {
   position: relative;
 }
@@ -25,12 +34,14 @@ body {
 .dice-left-animate {
   transform: rotate(-50deg);
   transform-origin: 100% 100%;
-   -moz-transform: rotate(-50deg);
-   -webkit-transform: rotate(-50deg);
+   /*-moz-transform: rotate(-50deg);
+   -webkit-transform: rotate(-50deg);*/
   transition-duration: 6s;
-   -webkit-transition-duration: 6s;
+   /*-webkit-transition-duration: 6s;
    -moz-transition-duration: 6s;
-   -o-transition-duration: 6s;
+   -o-transition-duration: 6s;*/
+   animation-delay: 2s;
+   /*-webkit-animation-delay: 2s;*/
 }
 
 #dice-right {
@@ -42,12 +53,14 @@ body {
 .dice-right-animate{
   transform: rotate(50deg);
   transform-origin: 0 100%;
-   -moz-transform: rotate(50deg);
-   -webkit-transform: rotate(50deg);
+   /*-moz-transform: rotate(50deg);
+   -webkit-transform: rotate(50deg);*/
   transition-duration: 6s;
-   -webkit-transition-duration: 6s;
-   -moz-transition-duration: 6s;
-   -o-transition-duration: 6s;
+   /*-webkit-transition-duration: 6s;
+   -moz-transition-duration: 6s;*/
+   /*-o-transition-duration: 6s;*/
+   animation-delay: 2s;
+   /*-webkit-animation-delay: 2s;*/
 }
 
 #pig {
@@ -59,14 +72,16 @@ body {
 }
 
 .pig-animate {
-  transform: translate(0,-320px);
-  -webkit-transform: translate(0,-320px);
-  -o-transform: translate(0,-320px);
-  -moz-transform: translate(0,-320px);
+  transform: translate(0,-250px);
+  /*-webkit-transform: translate(0,-250px);
+  -o-transform: translate(0,-250px);
+  -moz-transform: translate(0,-250px);*/
   transition-duration: 6s;
-   -webkit-transition-duration: 6s;
+   /*-webkit-transition-duration: 6s;
    -moz-transition-duration: 6s;
-   -o-transition-duration: 6s;
+   -o-transition-duration: 6s;*/
+   animation-delay: 2s;
+   /*-webkit-animation-delay: 2s;*/
 }
 
 .title {
@@ -76,6 +91,7 @@ body {
   padding: 70px;
   font-size: 8em;
   text-align: center;
+  margin-top: 0px;
 }
 button {
   display:inline-block;
