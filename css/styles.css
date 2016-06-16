@@ -1,52 +1,25 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 
 body {
+  margin-bottom: 200px;
   background-size: cover;
   background-color: #F54949;
   background: -webkit-linear-gradient(left top, #F54949, #F2C5AC);
 }
-.jumbotron {
-  background-image: url(../img/pigs.jpg);
-  opacity: .5;
+#header {
+  background: linear-gradient(0deg, #fff, transparent),
+              url('../img/pigs.jpg') no-repeat;
   background-size: cover;
+  min-height: 300px;
+
 }
- .jumbotron h1 {
-  z-index: 4 initial;
-  color: white;
+ #title {
+  color: #0D9E83;
   font-family: 'Lobster', cursive;
   font-weight: bold;
-  position: relative;
-}
-.highlight {
-  background: -webkit-linear-gradient(left,rgba(255,0,0,0),rgba(255,0,0,1));
-  color: white;
-}
-#player-one-total, #player-two-total, #player-computer-total {
+  padding: 70px;
+  font-size: 8em;
   text-align: center;
-  font-family: 'Lobster', cursive;
-}
-
-#player-computer-score {
-  display: none;
-}
-
-.player {
-  text-align: center;
-  color: white;
-  font-family: 'Lobster', cursive;
-}
-.choose-button  {
-  min-width: 100vw;
-  min-height: 60px;
-  text-align: center;
-}
-
-
-#running{
-  min-height: 100px;
-  text-align: center;
-  font-family: 'Lobster', cursive;
-  color: white;
 }
 button {
   display:inline-block;
@@ -55,25 +28,49 @@ button {
   min-width: 90px;
   min-height: 50px;
 }
-.btn{
+#friend {
+  display: none;
+}
+.btn {
   font-size: 2em;
   color: #F2BBBB;
+}
+.choose-button  {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.highlight {
+  background: -webkit-linear-gradient(left,rgba(255,0,0,0),rgba(255,0,0,1));
+  color: white;
+}
+
+#player-one-score, #player-two-score {
+  min-height: 120px;
+}
+
+#player-one-total, #player-two-total {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  color: white;
+}
+.player {
+  text-align: center;
+  color: white;
+  font-family: 'Lobster', cursive;
+}
+#running {
+  min-height: 80px;
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  color: white;
 }
 .dice-images {
   max-width: 400px;
   display: block;
-  margin: 2% auto;
+  margin: 1% auto;
   padding: 20px;
 }
-.jumbotron {
-  text-align: center;
-}
-
 #dice-roll {
   min-height: 400px;
   margin-bottom: 20px;
-}
-
-#player-one-score, #player-two-score {
-  min-height: 200px;
 }

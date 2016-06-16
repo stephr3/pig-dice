@@ -8,10 +8,16 @@
    <script src="js/jquery-1.12.4.js"></script>
    <script src="js/computer.js"></script>
   </head>
-  <body>
-    <div class="container">
-      <div class ="jumbotron">
-        <h1> PLAY PIG DICE!</h1>
+  <body>    
+      <div id="header">
+        <h1 id="title"> PLAY PIG DICE!</h1>
+      </div>
+      <div class="container">
+      <div class="row">
+      <div class="choose-button">
+        <button id="comp" type="inline-button"class="btn">Play the Computer</button>
+        <button id="friend" type="inline-button" class="btn">Play a Friend</button>
+      </div>
       </div>
       <div class="row">
         <div id="player-one-score" class="col-sm-6 highlight">
@@ -22,14 +28,6 @@
           <h2 class="player">Player 2</h2>
           <h2 id="player-two-total"></h2>
         </div>
-        <div id="player-computer-score" class="col-sm-6">
-          <h2 class="player">Player 2</h2>
-          <h2 id="player-computer-total"></h2>
-        </div>
-      </div>
-      <div class="choose-button">
-        <button id="comp" type="inline-button"class="btn">Play the Computer</button>
-        <button id="friend" type="inline-button" class="btn">Play a Friend</button>
       </div>
       <div id="running">
       <h2>Running Total</h2>
@@ -40,7 +38,6 @@
       </div>
         <button id='roll-button' type="button" class="btn center-block">Roll</button>
         <button id="hold-button" type="button" class="btn center-block">Hold</button>
-
     </div>
   </body>
 </html>

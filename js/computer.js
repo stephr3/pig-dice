@@ -1,6 +1,6 @@
 //Business Logic
 var totalRolls = 0;
-var computer;
+var computer =false;
 //Set Functions
 var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -89,7 +89,7 @@ Player.prototype.switch = function () {
 };
 
 Player.prototype.declareWinner = function() {
-  if (this.totalScore >= 15) {
+  if (this.totalScore >= 100) {
     alert("Winner: " + this.playerName);
     endGame(playerOne, playerTwo);
   }
@@ -111,12 +111,14 @@ $(document).ready(function() {
     computer = true;
     $("#comp").hide();
     $("#friend").show();
+    endGame(playerOne,playerTwo);
   });
   //Play a Friend Functionality
   $("#friend").click(function(){
     computer = false;
     $("#friend").hide();
     $("#comp").show();
+    endGame(playerOne,playerTwo);
   });
   //Roll Button Functionality
   $("#roll-button").click(function() {
