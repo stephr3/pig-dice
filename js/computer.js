@@ -45,18 +45,21 @@ var Dice = {
   five:"img/dice_five.jpg",
   six:"img/dice_six.jpg"
 };
-
 //Set Prototypes
 Player.prototype.checkIfOne = function () {
   if (this.currentRoll === 1) {
     this.runningTotal = 0;
     this.switch();
+    if (computer) {
+      $("#hold-button").hide();
+    }
   } else {
     this.runningTotal += this.currentRoll;
-    totalRolls++;
+    if (this.runningTotal >= 15 && (computer = true)) {
+      totalRolls++;
+    }
   }
 };
-
 Player.prototype.hold = function () {
   this.totalScore += this.runningTotal;
   this.declareWinner();
@@ -66,13 +69,17 @@ Player.prototype.hold = function () {
 };
 ////computerhold//////
 Player.prototype.computerPlay = function () {
+  if (playerTwo.turn = true) {
+  $("#hold-button").hide();
+} else if (playerOne.turn) {
+  $("#hold-button").show();
+  }
   if (totalRolls < 2) {
     playerTwo.checkIfOne();
   } else {
     playerTwo.hold();
   }
 }
-
 Player.prototype.switch = function () {
   totalRolls = 0;
   if (this === playerOne) {
@@ -85,16 +92,14 @@ Player.prototype.switch = function () {
     playerOne.turn = true;
     $("#player-one-score").addClass("highlight");
     $("#player-two-score").removeClass("highlight");
-}
+  }
 };
-
 Player.prototype.declareWinner = function() {
   if (this.totalScore >= 100) {
     alert("Winner: " + this.playerName);
     endGame(playerOne, playerTwo);
   }
 };
-
 var endGame = function (one, two) {
   one.runningTotal = 0;
   one.totalScore = 0;
@@ -103,7 +108,6 @@ var endGame = function (one, two) {
   $("#player-one-total").text(one.totalScore);
   $("#player-two-total").text(two.totalScore);
 };
-
 //User Interface Logic
 $(document).ready(function() {
   //Play the Computer Button Functionality
@@ -123,6 +127,7 @@ $(document).ready(function() {
   //Roll Button Functionality
   $("#roll-button").click(function() {
     $("#hold-button").show();
+    console.log(totalRolls);
     //Player One's Turn
     // debugger;
     if (playerOne.turn) {
@@ -148,7 +153,6 @@ $(document).ready(function() {
       }
     }
   });
-
   //Hold Button Functionality
   $("#hold-button").click (function(){
     if (playerOne.turn) {
