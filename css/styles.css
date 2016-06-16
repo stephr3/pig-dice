@@ -11,9 +11,65 @@ body {
               url('../img/pigs.jpg') no-repeat;
   background-size: cover;
   min-height: 300px;
-
 }
- #title {
+
+#winner {
+  position: relative;
+}
+#dice-left {
+  position: absolute;
+  top: 200%;
+  left: 30%;
+}
+
+.dice-left-animate {
+  transform: rotate(-50deg);
+  transform-origin: 100% 100%;
+   -moz-transform: rotate(-50deg);
+   -webkit-transform: rotate(-50deg);
+  transition-duration: 6s;
+   -webkit-transition-duration: 6s;
+   -moz-transition-duration: 6s;
+   -o-transition-duration: 6s;
+}
+
+#dice-right {
+  position: absolute;
+  top: 200%;
+  right: 30%;
+}
+
+.dice-right-animate{
+  transform: rotate(50deg);
+  transform-origin: 0 100%;
+   -moz-transform: rotate(50deg);
+   -webkit-transform: rotate(50deg);
+  transition-duration: 6s;
+   -webkit-transition-duration: 6s;
+   -moz-transition-duration: 6s;
+   -o-transition-duration: 6s;
+}
+
+#pig {
+  position: absolute;
+  top: 200%;
+  left: 60%;
+  margin-left: -300px;
+  max-width: 400px;
+}
+
+.pig-animate {
+  transform: translate(0,-320px);
+  -webkit-transform: translate(0,-320px);
+  -o-transform: translate(0,-320px);
+  -moz-transform: translate(0,-320px);
+  transition-duration: 6s;
+   -webkit-transition-duration: 6s;
+   -moz-transition-duration: 6s;
+   -o-transition-duration: 6s;
+}
+
+.title {
   color: #0D9E83;
   font-family: 'Lobster', cursive;
   font-weight: bold;

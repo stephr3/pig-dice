@@ -3,14 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Pig | Dice</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+   <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
    <link href="css/styles.css" rel="stylesheet" type="text/css">
    <script src="js/jquery-1.12.4.js"></script>
    <script src="js/computer.js"></script>
   </head>
-  <body>    
+  <body>
+    <div id="game">
       <div id="header">
-        <h1 id="title"> PLAY PIG DICE!</h1>
+        <h1 class="title"> PLAY PIG DICE!</h1>
       </div>
       <div class="container">
       <div class="row">
@@ -39,5 +40,12 @@
         <button id='roll-button' type="button" class="btn center-block">Roll</button>
         <button id="hold-button" type="button" class="btn center-block">Hold</button>
     </div>
+  </div>
+  <div id="winner">
+    <h1 class="title">Winner!</h1>
+    <img id="pig" src="img/pig_0.png" alt="a cute pig" />
+    <img id="dice-left" src="img/cracked_dice.jpg">
+    <img id="dice-right" src="img/cracked_dice_right.jpg">
+  </div>
   </body>
 </html>

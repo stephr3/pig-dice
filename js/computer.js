@@ -95,8 +95,13 @@ Player.prototype.switch = function () {
   }
 };
 Player.prototype.declareWinner = function() {
-  if (this.totalScore >= 100) {
-    alert("Winner: " + this.playerName);
+  if (this.totalScore >= 5) {
+    $("#game").hide();
+    $("#winner").show();
+    $("#pig").addClass("pig-animate");
+    $("#dice-left").addClass("dice-left-animate");
+    $("#dice-right").addClass("dice-right-animate");
+    $(".title").text("Winner is " + this.playerName + "!");
     endGame(playerOne, playerTwo);
   }
 };
