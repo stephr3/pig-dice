@@ -1,5 +1,6 @@
 //Business Logic
-
+var totalRolls = 0;
+var computer;
 //Set Functions
 var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -35,6 +36,8 @@ var playerOne = new Player (0, 0, 0, true);
 
 var playerTwo = new Player (0, 0, 0, false);
 
+// var playerComputer = new Player (0, 0, 0, false);
+
 var Dice = {
   one:"img/dice_one.jpg",
   two:"img/dice_two.jpg",
@@ -51,6 +54,7 @@ Player.prototype.checkIfOne = function () {
     this.switch();
   } else {
     this.runningTotal += this.currentRoll;
+    totalRolls++;
   }
 };
 
@@ -58,9 +62,19 @@ Player.prototype.hold = function () {
   this.totalScore += this.runningTotal;
   this.runningTotal = 0;
   this.switch();
+  $("#hold-button").hide();
 };
+////computerhold//////
+Player.prototype.computerPlay = function () {
+  if (totalRolls < 2) {
+    playerTwo.checkIfOne();
+  } else {
+    playerTwo.hold();
+  }
+}
 
 Player.prototype.switch = function () {
+  totalRolls = 0;
   if (this === playerOne) {
     playerOne.turn = false;
     playerTwo.turn = true;
@@ -76,9 +90,23 @@ Player.prototype.switch = function () {
 
 //User Interface Logic
 $(document).ready(function() {
+  //Play the Computer Button Functionality
+  $("#comp").click(function() {
+    computer = true;
+    $("#comp").hide();
+    $("#friend").show();
+  });
+  //Play a Friend Functionality
+  $("#friend").click(function(){
+    computer = false;
+    $("#friend").hide();
+    $("#comp").show();
+  });
   //Roll Button Functionality
   $("#roll-button").click(function() {
+    $("#hold-button").show();
     //Player One's Turn
+    // debugger;
     if (playerOne.turn) {
       playerOne.currentRoll = getRandomInt(1,7);
       showDice(playerOne.currentRoll);
@@ -87,11 +115,19 @@ $(document).ready(function() {
       $("#player-one-total").text(playerOne.totalScore);
     //Player Two's Turn
     } else if (playerTwo.turn){
-      playerTwo.currentRoll = getRandomInt(1,7);
-      showDice(playerTwo.currentRoll);
-      playerTwo.checkIfOne();
-      $("#running-total").text(playerTwo.runningTotal);
-      $("#player-two-total").text(playerTwo.totalScore);
+      if (computer){
+        playerTwo.currentRoll = getRandomInt(1,7);
+        showDice(playerTwo.currentRoll);
+        playerTwo.computerPlay();
+        $("#running-total").text(playerTwo.runningTotal);
+        $("#player-two-total").text(playerTwo.totalScore);
+      } else {
+        playerTwo.currentRoll = getRandomInt(1,7);
+        showDice(playerTwo.currentRoll);
+        playerTwo.checkIfOne();
+        $("#running-total").text(playerTwo.runningTotal);
+        $("#player-two-total").text(playerTwo.totalScore);
+      }
     }
   });
 
@@ -105,5 +141,6 @@ $(document).ready(function() {
       playerTwo.hold();
       $("#player-two-total").text(playerTwo.totalScore);
       $("#running-total").text(playerOne.runningTotal);
+
   });
 });
