@@ -24,7 +24,8 @@ var showDice = function(currentNumber) {
 };
 
 //Set Object Constructor
-function Player(currentRoll, runningTotal, totalScore, turn){
+function Player(playerName, currentRoll, runningTotal, totalScore, turn){
+  this.playerName = playerName;
   this.currentRoll = currentRoll;
   this.runningTotal = runningTotal;
   this.totalScore = totalScore;
@@ -32,11 +33,9 @@ function Player(currentRoll, runningTotal, totalScore, turn){
 }
 
 //Initialize Objects
-var playerOne = new Player (0, 0, 0, true);
+var playerOne = new Player ("Player One", 0, 0, 0, true);
 
-var playerTwo = new Player (0, 0, 0, false);
-
-// var playerComputer = new Player (0, 0, 0, false);
+var playerTwo = new Player ("Player Two", 0, 0, 0, false);
 
 var Dice = {
   one:"img/dice_one.jpg",
@@ -60,6 +59,7 @@ Player.prototype.checkIfOne = function () {
 
 Player.prototype.hold = function () {
   this.totalScore += this.runningTotal;
+  this.declareWinner();
   this.runningTotal = 0;
   this.switch();
   $("#hold-button").hide();
@@ -86,6 +86,22 @@ Player.prototype.switch = function () {
     $("#player-one-score").addClass("highlight");
     $("#player-two-score").removeClass("highlight");
 }
+};
+
+Player.prototype.declareWinner = function() {
+  if (this.totalScore >= 15) {
+    alert("Winner: " + this.playerName);
+    endGame(playerOne, playerTwo);
+  }
+};
+
+var endGame = function (one, two) {
+  one.runningTotal = 0;
+  one.totalScore = 0;
+  two.runningTotal = 0;
+  two.totalScore = 0;
+  $("#player-one-total").text(one.totalScore);
+  $("#player-two-total").text(two.totalScore);
 };
 
 //User Interface Logic
